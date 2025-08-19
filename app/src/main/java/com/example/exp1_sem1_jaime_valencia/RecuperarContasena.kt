@@ -32,7 +32,7 @@ class RecuperarContrasenaActivity : ComponentActivity() {
             ResetPasswordTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color(0xFFFFFFFF)
                 ) {
                     ResetPasswordScreen()
                 }
@@ -65,20 +65,14 @@ fun ResetPasswordScreen() {
             text = "Recuperar Contraseña",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(bottom = 32.dp)
-        )
-
-
-        Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            shape = RoundedCornerShape(16.dp)
-        ) {
-            Column(
+                .padding(bottom = 32.dp),
+            color = Color(0xFF02504C)
+        )
+        Spacer(modifier = Modifier.height(height = 8.dp))
+
+        Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(24.dp),
@@ -182,7 +176,6 @@ fun ResetPasswordScreen() {
                             context = context,
                             onComplete = {
                                 isLoading = false
-                                // Limpiar campos después del éxito
                                 username = ""
                                 newPassword = ""
                                 confirmPassword = ""
@@ -192,10 +185,12 @@ fun ResetPasswordScreen() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF5ED5B2)),
+
                     enabled = !isLoading && username.isNotEmpty() &&
                             newPassword.isNotEmpty() && confirmPassword.isNotEmpty() &&
                             newPassword == confirmPassword,
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(4.dp)
                 ) {
                     if (isLoading) {
                         CircularProgressIndicator(
@@ -211,7 +206,7 @@ fun ResetPasswordScreen() {
                     }
                 }
             }
-        }
+
     }
 }
 
